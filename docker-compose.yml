@@ -1,12 +1,27 @@
-# 可选：本地起一个 PostgreSQL 用于贴近生产环境验证。
-# 默认本地开发使用 SQLite（backend/.env 中 DATABASE_URL=sqlite:///./weihe_dev.db），
-# 无需任何数据库服务即可跑；只有在需要验证 PostgreSQL 特性（JSONB、CHECK、RESTRICT）时再启用。
+# =============================================================================
+# 味禾小馆官网 —— 生产编排 (Docker Compose)
+# -----------------------------------------------------------------------------
+# 服务拓扑：
+#   db        PostgreSQL 15（可选；本地零依赖可改用 SQLite，见下方注释）
+#   backend   FastAPI + uvicorn，内部 8000，仅集群内暴露
+#   frontend  官网静态站（nginx），对外 80
+#   admin     管理后台静态站（nginx），对外 8080
 #
-# 启动：   docker compose up -d db
-# 连接串：  postgresql+psycopg://weihe:weihe_pass@localhost:5432/weihe
-# 停服：   docker compose down    （加 -v 清除数据卷）
+# 关键修正（与代码驱动一致）：
+#   后端 ORM 是【同步】SQLAlchemy，因此 DATABASE_URL 必须用【同步】驱动
+#   postgresql+psycopg://...，不能用文档旧版的 postgresql+asyncpg://...（异步会报错）。
+#
+# 启动：  docker compose up -d --build
+# 查看：  docker compose ps / docker compose logs -f backend
+# 停止：  docker compose down        （加 -v 会清除 pg_data 与 uploads 数据卷）
+#
+# 变量说明：
+#   可在本目录放一个 .env 文件（仅含 SECRET_KEY、ALLOWED_ORIGINS 等），
+#   docker compose 会自动读取并替换下方 ${...}；不填则使用默认值。
+# =============================================================================
 
 services:
+  # ---------------------- 数据库（生产推荐 PostgreSQL）----------------------
   db:
     image: postgres:15-alpine
     container_name: weihe-db
@@ -14,6 +29,7 @@ services:
       POSTGRES_USER: weihe
       POSTGRES_PASSWORD: weihe_pass
       POSTGRES_DB: weihe
+    # 5432 仅调试暴露；生产环境建议删掉 ports，让 db 只在集群内可达
     ports:
       - "5432:5432"
     volumes:
@@ -23,6 +39,77 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
+
+  # ---------------------- 后端 API ----------------------
+  backend:
+    build: ./backend
+    container_name: weihe-backend
+    # 生产环境变量：可用本目录 .env 覆盖；这里给出与 PostgreSQL 配套的默认值
+    environment:
+      # 同步驱动（重要）：与 app/database.py 的同步引擎匹配
+      DATABASE_URL: ${DATABASE_URL:-postgresql+psycopg://weihe:weihe_pass@db:5432/weihe}
+      SECRET_KEY: ${SECRET_KEY:-change-me-to-a-long-random-string}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:5173,http://localhost:5174}
+      UPLOAD_DIR: app/static/uploads
+      DEFAULT_ADMIN_USER: ${DEFAULT_ADMIN_USER:-admin}
+      DEFAULT_ADMIN_PASSWORD: ${DEFAULT_ADMIN_PASSWORD:-admin123456}
+    # 菜品图片持久化：挂数据卷，容器重建不丢图
+    volumes:
+      - uploads:/app/app/static/uploads
+    # 仅集群内暴露（前端/后台的 nginx 通过服务名 backend 访问）
+    expose:
+      - "8000"
+    # 如需在宿主机直接调试 API，可临时打开：ports: ["8000:8000"]
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8000/api/public/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+
+  # ---------------------- 官网前台 ----------------------
+  frontend:
+    build: ./frontend
+    container_name: weihe-frontend
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://localhost/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  # ---------------------- 管理后台 ----------------------
+  admin:
+    build: ./admin
+    container_name: weihe-admin
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://localhost/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
 
 volumes:
   pg_data:
+  uploads:
+
+# =============================================================================
+# 附：本地零依赖（SQLite）跑法
+#   把 backend.environment.DATABASE_URL 改成：
+#     DATABASE_URL: sqlite:///./weihe_dev.db
+#   并删除上面的 db 服务（或保留不用），即可不依赖 PostgreSQL 直接启动。
+#   注意 SQLite 文件需持久化：给 backend 加 volumes: - ./weihe_dev.db:/app/weihe_dev.db
+# =============================================================================

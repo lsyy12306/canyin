@@ -1,0 +1,21 @@
+# 后端镜像构建时忽略的文件（避免把本地依赖/缓存打进镜像）
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.git/
+.gitignore
+# 本地数据库文件（生产用 PostgreSQL 或挂载的 SQLite 卷，不塞进镜像）
+*.db
+*.sqlite
+*.sqlite3
+# 本地环境变量（镜像内由 compose/.env 注入）
+.env
+# 文档与前端/后台源码无需进后端镜像
+../frontend/
+../admin/
+*.md
