@@ -1,0 +1,120 @@
+erDiagram
+    dish_categories ||--o{ dishes : contains
+    jobs ||--o{ job_applications : receives
+
+    dish_categories {
+        int id PK
+        varchar key UK
+        varchar name
+        int sort_order
+        timestamp created_at
+    }
+
+    dishes {
+        int id PK
+        varchar name
+        varchar slug UK
+        int category_id FK
+        int price
+        varchar description
+        varchar image_url
+        jsonb tags
+        boolean is_recommended
+        int sort_order
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    stores {
+        int id PK
+        varchar city
+        varchar name
+        varchar slug UK
+        varchar highlight
+        varchar image_url
+        int sort_order
+        boolean is_active
+        timestamp created_at
+    }
+
+    news {
+        int id PK
+        varchar type
+        varchar title
+        varchar slug UK
+        varchar summary
+        text content
+        varchar cover_image
+        date published_at
+        boolean is_published
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    jobs {
+        int id PK
+        varchar title
+        varchar department
+        varchar location
+        varchar type
+        text description
+        text requirements
+        int sort_order
+        boolean is_active
+        timestamp created_at
+    }
+
+    job_applications {
+        int id PK
+        int job_id FK
+        varchar name
+        varchar phone
+        varchar email
+        varchar resume_url
+        text message
+        varchar status
+        varchar ip_address
+        timestamp created_at
+    }
+
+    franchise_inquiries {
+        int id PK
+        varchar name
+        varchar phone
+        varchar city
+        varchar budget_range
+        text message
+        varchar status
+        varchar ip_address
+        timestamp created_at
+    }
+
+    contact_messages {
+        int id PK
+        varchar name
+        varchar contact
+        varchar msg_type
+        text content
+        varchar status
+        varchar ip_address
+        timestamp created_at
+    }
+
+    site_configs {
+        int id PK
+        varchar config_key UK
+        text config_value
+        varchar config_group
+        varchar description
+        timestamp updated_at
+    }
+
+    users {
+        int id PK
+        varchar username UK
+        varchar hashed_password
+        varchar role
+        boolean is_active
+        timestamp created_at
+    }

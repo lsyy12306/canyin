@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>味禾小馆官网 · 产品原型</title>
+<style>
+  :root{
+    --bg:#f7f4ef; --panel:#fff; --line:#e7ded2; --ink:#2b2622; --muted:#8a7f72;
+    --brand:#c0392b; --brand2:#e08a3c; --accent:#2f7d5b;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);}
+  .app{display:flex;flex-direction:column;height:100vh;}
+  .topbar{display:flex;align-items:center;gap:14px;padding:10px 16px;background:var(--panel);border-bottom:1px solid var(--line);}
+  .topbar .logo{font-weight:700;color:var(--brand);font-size:16px;}
+  .topbar .sub{color:var(--muted);font-size:13px;}
+  .spacer{flex:1;}
+  .dev-btns button{cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);padding:6px 14px;border-radius:8px;font-size:13px;}
+  .dev-btns button.on{background:var(--brand);color:#fff;border-color:var(--brand);}
+  .flow-btns{display:flex;gap:8px;padding:8px 16px;background:#fbf8f3;border-bottom:1px solid var(--line);flex-wrap:wrap;align-items:center;}
+  .flow-btns .tag{font-size:12px;color:var(--muted);}
+  .flow-btns button{cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);padding:6px 12px;border-radius:8px;font-size:13px;}
+  .flow-btns button:hover{border-color:var(--brand);color:var(--brand);}
+  .flow-btns #flowStop{color:var(--brand);border-color:var(--brand);}
+  .body{flex:1;display:flex;min-height:0;}
+  .side{width:264px;background:var(--panel);border-right:1px solid var(--line);overflow:auto;padding:12px 0;}
+  .side h4{margin:0;padding:10px 16px;font-size:12px;color:var(--muted);letter-spacing:.05em;}
+  .tree{list-style:none;margin:0;padding:0;}
+  .tree .node{display:flex;align-items:center;gap:6px;padding:8px 16px;cursor:pointer;font-size:14px;border-left:3px solid transparent;}
+  .tree .node:hover{background:#f3efe8;}
+  .tree .node.lv1{font-weight:600;}
+  .tree .node.active{background:#fdeee9;border-left-color:var(--brand);color:var(--brand);}
+  .tree .twist{cursor:pointer;width:14px;display:inline-block;color:var(--muted);user-select:none;}
+  .tree .children{list-style:none;margin:0;padding:0;display:none;}
+  .tree .children.open{display:block;}
+  .tree .node.lv2{padding-left:40px;font-weight:400;color:#4a4239;font-size:13px;}
+  .stage{flex:1;display:flex;justify-content:center;align-items:flex-start;overflow:auto;background:#ece7df;padding:16px;}
+  .frame-wrap{background:#fff;box-shadow:0 6px 24px rgba(0,0,0,.12);transition:width .25s,height .25s;border-radius:4px;overflow:hidden;display:flex;flex-direction:column;}
+  .frame-wrap.desktop{width:100%;height:100%;}
+  .frame-wrap.mobile{width:390px;height:844px;max-height:100%;}
+  .frame-wrap .bar{display:none;align-items:center;justify-content:center;gap:6px;height:26px;background:#222;color:#fff;font-size:11px;}
+  .frame-wrap.mobile .bar{display:flex;}
+  iframe{border:0;flex:1;width:100%;display:block;background:#fff;}
+  .hint{padding:8px 16px;font-size:12px;color:var(--muted);background:var(--panel);border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <span class="logo">味禾小馆</span>
+    <span class="sub">官网产品原型 · 高保真可交互 · 基于 PRD v1.2</span>
+    <span class="spacer"></span>
+    <div class="dev-btns">
+      <button id="devDesktop" class="on">桌面</button>
+      <button id="devMobile">手机</button>
+    </div>
+  </div>
+  <div class="flow-btns">
+    <span class="tag">典型用户流程演示：</span>
+    <button data-flow="cust">顾客逛店</button>
+    <button data-flow="join">加盟咨询</button>
+    <button data-flow="job">求职应聘</button>
+    <button data-flow="brand">了解品牌</button>
+    <button id="flowStop">■ 停止</button>
+  </div>
+  <div class="body">
+    <aside class="side">
+      <h4>信息架构 / 站点地图</h4>
+      <ul class="tree" id="tree"></ul>
+    </aside>
+    <div class="stage">
+      <div class="frame-wrap desktop" id="frameWrap">
+        <div class="bar">iPhone · 味禾小馆官网原型</div>
+        <iframe id="frame" src="index.html" title="原型预览"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="hint" id="hint">提示：点击左侧任意节点在右侧预览对应页面；点击顶部流程按钮可自动演示用户路径。当前为占位演示内容，真实素材待补充。</div>
+</div>
+<script>
+const IA = [
+  {name:'首页', file:'index.html', lv:1},
+  {name:'产品', lv:1, children:[
+    {name:'菜品中心', file:'products/dishes.html'},
+    {name:'门店案例展示', file:'products/stores.html'},
+  ]},
+  {name:'新闻', lv:1, children:[
+    {name:'企业新闻', file:'news/corporate.html'},
+    {name:'行业资讯', file:'news/industry.html'},
+  ]},
+  {name:'招商加盟', lv:1, children:[
+    {name:'加盟合作', file:'franchise/cooperation.html'},
+    {name:'人才招聘', file:'franchise/jobs.html'},
+  ]},
+  {name:'关于我们', lv:1, children:[
+    {name:'品牌简介', file:'about/intro.html'},
+    {name:'发展历程', file:'about/history.html'},
+    {name:'品牌故事', file:'about/story.html'},
+    {name:'联系我们', file:'about/contact.html'},
+  ]},
+  {name:'隐私政策', file:'privacy.html', lv:1},
+];
+const flows = {
+  cust:['index.html','products/dishes.html','products/stores.html'],
+  join:['index.html','franchise/cooperation.html','about/contact.html'],
+  job:['index.html','franchise/jobs.html','about/contact.html'],
+  brand:['index.html','about/story.html','about/history.html'],
+};
+const flowLabels = {
+  cust:['首页','菜品中心','门店案例展示'],
+  join:['首页','加盟合作','联系我们'],
+  job:['首页','人才招聘','联系我们'],
+  brand:['首页','品牌故事','发展历程'],
+};
+const frame=document.getElementById('frame');
+const wrap=document.getElementById('frameWrap');
+const hint=document.getElementById('hint');
+const tree=document.getElementById('tree');
+
+function go(file, label){
+  frame.src=file;
+  document.querySelectorAll('.tree .node').forEach(n=>n.classList.remove('active'));
+  if(label){
+    hint.textContent='正在预览：'+label+'（'+file+'）';
+    const el=[...document.querySelectorAll('.tree .node')].find(n=>n.dataset.label===label);
+    if(el) el.classList.add('active');
+  }
+}
+function build(){
+  IA.forEach(item=>{
+    const li=document.createElement('li');
+    const node=document.createElement('div');
+    node.className='node lv1';
+    if(item.file){ node.dataset.label=item.name; node.onclick=()=>go(item.file,item.name); }
+    node.appendChild(document.createTextNode(item.name));
+    li.appendChild(node);
+    if(item.children){
+      const tw=document.createElement('span'); tw.className='twist'; tw.textContent='▸';
+      node.insertBefore(tw,node.firstChild);
+      const ul=document.createElement('ul'); ul.className='children';
+      item.children.forEach(c=>{
+        const cli=document.createElement('li');
+        const cn=document.createElement('div'); cn.className='node lv2'; cn.dataset.label=c.name;
+        cn.textContent=c.name; cn.onclick=()=>go(c.file,c.name);
+        cli.appendChild(cn); ul.appendChild(cli);
+      });
+      li.appendChild(ul);
+      tw.onclick=(e)=>{ e.stopPropagation(); ul.classList.toggle('open'); tw.textContent=ul.classList.contains('open')?'▾':'▸'; };
+    }
+    tree.appendChild(li);
+  });
+}
+build();
+
+const bD=document.getElementById('devDesktop'), bM=document.getElementById('devMobile');
+bD.onclick=()=>{ wrap.className='frame-wrap desktop'; bD.classList.add('on'); bM.classList.remove('on'); };
+bM.onclick=()=>{ wrap.className='frame-wrap mobile'; bM.classList.add('on'); bD.classList.remove('on'); };
+
+let timer=null;
+function stopFlow(){ if(timer){clearInterval(timer); timer=null;} }
+function playFlow(key){
+  stopFlow();
+  const seq=flows[key], lab=flowLabels[key];
+  go(seq[0],lab[0]);
+  let i=0;
+  hint.textContent='流程演示中（1/'+seq.length+'）：'+lab[0];
+  timer=setInterval(()=>{
+    i++;
+    if(i>=seq.length){ stopFlow(); hint.textContent='流程演示结束：'+lab.join(' → '); return; }
+    go(seq[i],lab[i]);
+    hint.textContent='流程演示中（'+(i+1)+'/'+seq.length+'）：'+lab.slice(0,i+1).join(' → ');
+  },1700);
+}
+document.querySelectorAll('.flow-btns [data-flow]').forEach(b=> b.onclick=()=>playFlow(b.dataset.flow));
+document.getElementById('flowStop').onclick=()=>{ stopFlow(); hint.textContent='已停止演示。'; };
+</script>
+</body>
+</html>

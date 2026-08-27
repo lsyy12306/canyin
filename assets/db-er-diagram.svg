@@ -1,0 +1,178 @@
+<svg viewBox="0 0 680 920" xmlns="http://www.w3.org/2000/svg" width="100%" role="img">
+  <title>味禾小馆官网数据库 E-R 图</title>
+  <desc>展示 dish_categories、dishes、stores、news、jobs、job_applications、franchise_inquiries、contact_messages、site_configs、users 十个实体及其关系。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="crow" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M2 2V8M2 2L8 5L2 8" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <style>
+    .entity { fill: #F1EFE8; stroke: #888780; stroke-width: 0.5; }
+    .header { fill: #F09595; stroke: #A32D2D; stroke-width: 0.5; }
+    .pk { fill: #F7C1C1; }
+    .fk { fill: #FAC775; }
+    .text { font-family: sans-serif; font-size: 11px; fill: #2C2C2A; }
+    .title { font-family: sans-serif; font-size: 12px; font-weight: 500; fill: #501313; }
+    .rel { stroke: #5F5E5A; stroke-width: 1; fill: none; marker-start="url(#crow)"; marker-end="url(#arrow)"; }
+    .rel-label { font-family: sans-serif; font-size: 10px; fill: #5F5E5A; }
+  </style>
+
+  <!-- dish_categories -->
+  <g transform="translate(40,40)">
+    <rect x="0" y="0" width="160" height="18" rx="4" class="header"/>
+    <text x="80" y="9" class="title" text-anchor="middle" dominant-baseline="central">dish_categories</text>
+    <rect x="0" y="18" width="160" height="92" rx="4" class="entity"/>
+    <text x="6" y="32" class="text">id <tspan class="pk">PK</tspan></text>
+    <text x="6" y="48" class="text">key UK</text>
+    <text x="6" y="64" class="text">name</text>
+    <text x="6" y="80" class="text">sort_order</text>
+    <text x="6" y="96" class="text">created_at</text>
+  </g>
+
+  <!-- dishes -->
+  <g transform="translate(260,40)">
+    <rect x="0" y="0" width="160" height="18" rx="4" class="header"/>
+    <text x="80" y="9" class="title" text-anchor="middle" dominant-baseline="central">dishes</text>
+    <rect x="0" y="18" width="160" height="156" rx="4" class="entity"/>
+    <text x="6" y="32" class="text">id <tspan class="pk">PK</tspan></text>
+    <text x="6" y="48" class="text">name</text>
+    <text x="6" y="64" class="text">slug UK</text>
+    <text x="6" y="80" class="text">category_id <tspan class="fk">FK</tspan></text>
+    <text x="6" y="96" class="text">price / description</text>
+    <text x="6" y="112" class="text">image_url / tags</text>
+    <text x="6" y="128" class="text">is_recommended</text>
+    <text x="6" y="144" class="text">is_active / sort</text>
+    <text x="6" y="160" class="text">created_at / updated_at</text>
+  </g>
+
+  <!-- stores -->
+  <g transform="translate(480,40)">
+    <rect x="0" y="0" width="160" height="18" rx="4" class="header"/>
+    <text x="80" y="9" class="title" text-anchor="middle" dominant-baseline="central">stores</text>
+    <rect x="0" y="18" width="160" height="108" rx="4" class="entity"/>
+    <text x="6" y="32" class="text">id <tspan class="pk">PK</tspan></text>
+    <text x="6" y="48" class="text">city / name</text>
+    <text x="6" y="64" class="text">slug UK</text>
+    <text x="6" y="80" class="text">highlight / image_url</text>
+    <text x="6" y="96" class="text">is_active / sort</text>
+    <text x="6" y="112" class="text">created_at</text>
+  </g>
+
+  <!-- news -->
+  <g transform="translate(40,180)">
+    <rect x="0" y="0" width="160" height="18" rx="4" class="header"/>
+    <text x="80" y="9" class="title" text-anchor="middle" dominant-baseline="central">news</text>
+    <rect x="0" y="18" width="160" height="124" rx="4" class="entity"/>
+    <text x="6" y="32" class="text">id <tspan class="pk">PK</tspan></text>
+    <text x="6" y="48" class="text">type / title</text>
+    <text x="6" y="64" class="text">slug UK</text>
+    <text x="6" y="80" class="text">summary / content</text>
+    <text x="6" y="96" class="text">cover_image</text>
+    <text x="6" y="112" class="text">published_at / is_published</text>
+    <text x="6" y="128" class="text">created_at / updated_at</text>
+  </g>
+
+  <!-- jobs -->
+  <g transform="translate(260,240)">
+    <rect x="0" y="0" width="160" height="18" rx="4" class="header"/>
+    <text x="80" y="9" class="title" text-anchor="middle" dominant-baseline="central">jobs</text>
+    <rect x="0" y="18" width="160" height="124" rx="4" class="entity"/>
+    <text x="6" y="32" class="text">id <tspan class="pk">PK</tspan></text>
+    <text x="6" y="48" class="text">title / department</text>
+    <text x="6" y="64" class="text">location / type</text>
+    <text x="6" y="80" class="text">description</text>
+    <text x="6" y="96" class="text">requirements</text>
+    <text x="6" y="112" class="text">is_active / sort</text>
+    <text x="6" y="128" class="text">created_at</text>
+  </g>
+
+  <!-- job_applications -->
+  <g transform="translate(480,240)">
+    <rect x="0" y="0" width="160" height="18" rx="4" class="header"/>
+    <text x="80" y="9" class="title" text-anchor="middle" dominant-baseline="central">job_applications</text>
+    <rect x="0" y="18" width="160" height="124" rx="4" class="entity"/>
+    <text x="6" y="32" class="text">id <tspan class="pk">PK</tspan></text>
+    <text x="6" y="48" class="text">job_id <tspan class="fk">FK</tspan></text>
+    <text x="6" y="64" class="text">name / phone</text>
+    <text x="6" y="80" class="text">email / resume_url</text>
+    <text x="6" y="96" class="text">message / status</text>
+    <text x="6" y="112" class="text">ip_address</text>
+    <text x="6" y="128" class="text">created_at</text>
+  </g>
+
+  <!-- franchise_inquiries -->
+  <g transform="translate(40,380)">
+    <rect x="0" y="0" width="160" height="18" rx="4" class="header"/>
+    <text x="80" y="9" class="title" text-anchor="middle" dominant-baseline="central">franchise_inquiries</text>
+    <rect x="0" y="18" width="160" height="108" rx="4" class="entity"/>
+    <text x="6" y="32" class="text">id <tspan class="pk">PK</tspan></text>
+    <text x="6" y="48" class="text">name / phone</text>
+    <text x="6" y="64" class="text">city / budget_range</text>
+    <text x="6" y="80" class="text">message / status</text>
+    <text x="6" y="96" class="text">ip_address</text>
+    <text x="6" y="112" class="text">created_at</text>
+  </g>
+
+  <!-- contact_messages -->
+  <g transform="translate(260,440)">
+    <rect x="0" y="0" width="160" height="18" rx="4" class="header"/>
+    <text x="80" y="9" class="title" text-anchor="middle" dominant-baseline="central">contact_messages</text>
+    <rect x="0" y="18" width="160" height="108" rx="4" class="entity"/>
+    <text x="6" y="32" class="text">id <tspan class="pk">PK</tspan></text>
+    <text x="6" y="48" class="text">name / contact</text>
+    <text x="6" y="64" class="text">msg_type</text>
+    <text x="6" y="80" class="text">content / status</text>
+    <text x="6" y="96" class="text">ip_address</text>
+    <text x="6" y="112" class="text">created_at</text>
+  </g>
+
+  <!-- site_configs -->
+  <g transform="translate(480,440)">
+    <rect x="0" y="0" width="160" height="18" rx="4" class="header"/>
+    <text x="80" y="9" class="title" text-anchor="middle" dominant-baseline="central">site_configs</text>
+    <rect x="0" y="18" width="160" height="108" rx="4" class="entity"/>
+    <text x="6" y="32" class="text">id <tspan class="pk">PK</tspan></text>
+    <text x="6" y="48" class="text">config_key UK</text>
+    <text x="6" y="64" class="text">config_value</text>
+    <text x="6" y="80" class="text">config_group</text>
+    <text x="6" y="96" class="text">description</text>
+    <text x="6" y="112" class="text">updated_at</text>
+  </g>
+
+  <!-- users -->
+  <g transform="translate(40,560)">
+    <rect x="0" y="0" width="160" height="18" rx="4" class="header"/>
+    <text x="80" y="9" class="title" text-anchor="middle" dominant-baseline="central">users</text>
+    <rect x="0" y="18" width="160" height="92" rx="4" class="entity"/>
+    <text x="6" y="32" class="text">id <tspan class="pk">PK</tspan></text>
+    <text x="6" y="48" class="text">username UK</text>
+    <text x="6" y="64" class="text">hashed_password</text>
+    <text x="6" y="80" class="text">role / is_active</text>
+    <text x="6" y="96" class="text">created_at</text>
+  </g>
+
+  <!-- Relationships -->
+  <line x1="200" y1="118" x2="260" y2="118" class="rel" marker-start="url(#crow)" marker-end="url(#arrow)"/>
+  <text x="230" y="110" class="rel-label" text-anchor="middle">1:N</text>
+
+  <line x1="420" y1="301" x2="480" y2="301" class="rel" marker-start="url(#crow)" marker-end="url(#arrow)"/>
+  <text x="450" y="293" class="rel-label" text-anchor="middle">1:N</text>
+
+  <!-- Legend -->
+  <g transform="translate(40,720)">
+    <rect x="0" y="0" width="600" height="160" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+    <text x="12" y="24" class="title">图例说明</text>
+    <rect x="12" y="38" width="14" height="14" rx="2" class="header"/>
+    <text x="34" y="49" class="text">实体表头</text>
+    <rect x="12" y="60" width="14" height="14" rx="2" class="pk"/>
+    <text x="34" y="71" class="text">PK = 主键</text>
+    <rect x="12" y="82" width="14" height="14" rx="2" class="fk"/>
+    <text x="34" y="93" class="text">FK = 外键</text>
+    <text x="12" y="120" class="text">关系连线：多端（crow foot）指向一端的父表，箭头指向子表。</text>
+    <text x="12" y="140" class="text">当前关系：dish_categories 1:N dishes；jobs 1:N job_applications。</text>
+  </g>
+</svg>

@@ -1,0 +1,100 @@
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" role="img" width="100%">
+  <title>味禾小馆官网前台系统模块图</title>
+  <desc>React SPA 前台系统分层模块：页面、组件、服务、设计系统。</desc>
+  <defs>
+    <marker id="fe-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- 页面层 -->
+  <rect x="40" y="30" width="820" height="140" rx="12" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+  <text x="450" y="54" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#042C53">页面层（Pages）</text>
+  <rect x="70" y="75" width="95" height="70" rx="8" fill="#FFFFFF" stroke="#378ADD" stroke-width="0.5"/>
+  <text x="117" y="105" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0C447C">首页</text>
+  <text x="117" y="125" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F5E5A">HomePage</text>
+
+  <rect x="185" y="75" width="95" height="70" rx="8" fill="#FFFFFF" stroke="#378ADD" stroke-width="0.5"/>
+  <text x="232" y="105" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0C447C">产品</text>
+  <text x="232" y="125" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F5E5A">菜品/门店</text>
+
+  <rect x="300" y="75" width="95" height="70" rx="8" fill="#FFFFFF" stroke="#378ADD" stroke-width="0.5"/>
+  <text x="347" y="105" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0C447C">新闻</text>
+  <text x="347" y="125" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F5E5A">企业/行业</text>
+
+  <rect x="415" y="75" width="95" height="70" rx="8" fill="#FFFFFF" stroke="#378ADD" stroke-width="0.5"/>
+  <text x="462" y="105" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0C447C">招商加盟</text>
+  <text x="462" y="125" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F5E5A">加盟/招聘</text>
+
+  <rect x="530" y="75" width="95" height="70" rx="8" fill="#FFFFFF" stroke="#378ADD" stroke-width="0.5"/>
+  <text x="577" y="105" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0C447C">关于我们</text>
+  <text x="577" y="125" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F5E5A">简介/历程/故事</text>
+
+  <rect x="645" y="75" width="95" height="70" rx="8" fill="#FFFFFF" stroke="#378ADD" stroke-width="0.5"/>
+  <text x="692" y="105" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0C447C">联系我们</text>
+  <text x="692" y="125" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F5E5A">Contact</text>
+
+  <rect x="760" y="75" width="80" height="70" rx="8" fill="#FFFFFF" stroke="#378ADD" stroke-width="0.5"/>
+  <text x="800" y="105" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0C447C">隐私政策</text>
+  <text x="800" y="125" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F5E5A">Privacy</text>
+
+  <!-- 组件层 -->
+  <rect x="40" y="200" width="820" height="140" rx="12" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+  <text x="450" y="224" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#04342C">组件层（Components）</text>
+  <rect x="70" y="245" width="110" height="70" rx="8" fill="#FFFFFF" stroke="#1D9E75" stroke-width="0.5"/>
+  <text x="125" y="270" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#085041">Layout</text>
+  <text x="125" y="290" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F5E5A">Header / Footer</text>
+
+  <rect x="200" y="245" width="110" height="70" rx="8" fill="#FFFFFF" stroke="#1D9E75" stroke-width="0.5"/>
+  <text x="255" y="270" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#085041">导航组件</text>
+  <text x="255" y="290" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F5E5A">Menu / Breadcrumb</text>
+
+  <rect x="330" y="245" width="110" height="70" rx="8" fill="#FFFFFF" stroke="#1D9E75" stroke-width="0.5"/>
+  <text x="385" y="270" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#085041">卡片组件</text>
+  <text x="385" y="290" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F5E5A">Dish/Store/News</text>
+
+  <rect x="460" y="245" width="110" height="70" rx="8" fill="#FFFFFF" stroke="#1D9E75" stroke-width="0.5"/>
+  <text x="515" y="270" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#085041">展示组件</text>
+  <text x="515" y="290" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F5E5A">Hero / Timeline</text>
+
+  <rect x="590" y="245" width="110" height="70" rx="8" fill="#FFFFFF" stroke="#1D9E75" stroke-width="0.5"/>
+  <text x="645" y="270" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#085041">表单组件</text>
+  <text x="645" y="290" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F5E5A">ContactForm</text>
+
+  <rect x="720" y="245" width="110" height="70" rx="8" fill="#FFFFFF" stroke="#1D9E75" stroke-width="0.5"/>
+  <text x="775" y="270" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#085041">占位组件</text>
+  <text x="775" y="290" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F5E5A">PlaceholderImage</text>
+
+  <!-- 服务层 -->
+  <rect x="40" y="370" width="820" height="80" rx="12" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+  <text x="450" y="394" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#412402">服务层（Services / Hooks）</text>
+  <rect x="70" y="415" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#BA7517" stroke-width="0.5"/>
+  <text x="135" y="435" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#633806">API Client (Axios)</text>
+  <rect x="220" y="415" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#BA7517" stroke-width="0.5"/>
+  <text x="285" y="435" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#633806">SWR Hooks</text>
+  <rect x="370" y="415" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#BA7517" stroke-width="0.5"/>
+  <text x="435" y="435" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#633806">React Router</text>
+  <rect x="520" y="415" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#BA7517" stroke-width="0.5"/>
+  <text x="585" y="435" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#633806">Form Validation</text>
+  <rect x="670" y="415" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#BA7517" stroke-width="0.5"/>
+  <text x="735" y="435" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#633806">Utils / Helpers</text>
+
+  <!-- 设计系统 -->
+  <rect x="40" y="480" width="820" height="70" rx="12" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text x="450" y="504" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">设计系统（Design System）</text>
+  <rect x="70" y="525" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text x="135" y="545" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#444441">Tailwind Config</text>
+  <rect x="220" y="525" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text x="285" y="545" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#444441">CSS Variables</text>
+  <rect x="370" y="525" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text x="435" y="545" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#444441">Lucide Icons</text>
+  <rect x="520" y="525" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text x="585" y="545" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#444441">Responsive Breakpoints</text>
+  <rect x="670" y="525" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text x="735" y="545" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#444441">SEO Helmet</text>
+
+  <!-- 连接箭头 -->
+  <line x1="450" y1="170" x2="450" y2="200" stroke="#5F5E5A" stroke-width="1" marker-end="url(#fe-arrow)"/>
+  <line x1="450" y1="340" x2="450" y2="370" stroke="#5F5E5A" stroke-width="1" marker-end="url(#fe-arrow)"/>
+  <line x1="450" y1="450" x2="450" y2="480" stroke="#5F5E5A" stroke-width="1" marker-end="url(#fe-arrow)"/>
+</svg>

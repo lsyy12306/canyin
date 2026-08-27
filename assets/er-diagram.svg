@@ -1,0 +1,146 @@
+<svg viewBox="0 0 900 760" xmlns="http://www.w3.org/2000/svg" role="img" width="100%">
+  <title>味禾小馆官网数据库 E-R 图</title>
+  <desc>包含菜品分类、菜品、门店、新闻、岗位、简历投递、加盟意向、联系留言、站点配置、用户共 10 个实体的关系图。</desc>
+  <defs>
+    <marker id="er-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- dish_categories -->
+  <g transform="translate(40,40)">
+    <rect width="170" height="120" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+    <rect width="170" height="28" rx="8" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="85" y="18" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#042C53">dish_categories</text>
+    <text x="10" y="45" font-size="11" fill="#444441">id PK</text>
+    <text x="10" y="62" font-size="11" fill="#444441">key UK</text>
+    <text x="10" y="79" font-size="11" fill="#444441">name</text>
+    <text x="10" y="96" font-size="11" fill="#444441">sort_order</text>
+    <text x="10" y="113" font-size="11" fill="#444441">created_at</text>
+  </g>
+
+  <!-- dishes -->
+  <g transform="translate(260,40)">
+    <rect width="190" height="210" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+    <rect width="190" height="28" rx="8" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="95" y="18" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#042C53">dishes</text>
+    <text x="10" y="45" font-size="11" fill="#444441">id PK</text>
+    <text x="10" y="62" font-size="11" fill="#444441">name</text>
+    <text x="10" y="79" font-size="11" fill="#444441">slug UK</text>
+    <text x="10" y="96" font-size="11" fill="#444441">category_id FK</text>
+    <text x="10" y="113" font-size="11" fill="#444441">price</text>
+    <text x="10" y="130" font-size="11" fill="#444441">description</text>
+    <text x="10" y="147" font-size="11" fill="#444441">image_url</text>
+    <text x="10" y="164" font-size="11" fill="#444441">tags</text>
+    <text x="10" y="181" font-size="11" fill="#444441">is_recommended</text>
+    <text x="10" y="198" font-size="11" fill="#444441">sort_order / is_active</text>
+  </g>
+
+  <!-- relation: dish_categories -> dishes -->
+  <line x1="210" y1="100" x2="260" y2="145" stroke="#5F5E5A" stroke-width="1" marker-end="url(#er-arrow)"/>
+  <text x="235" y="118" font-size="10" fill="#5F5E5A">1:N</text>
+
+  <!-- stores -->
+  <g transform="translate(500,40)">
+    <rect width="170" height="150" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+    <rect width="170" height="28" rx="8" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+    <text x="85" y="18" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#412402">stores</text>
+    <text x="10" y="45" font-size="11" fill="#444441">id PK</text>
+    <text x="10" y="62" font-size="11" fill="#444441">city / name</text>
+    <text x="10" y="79" font-size="11" fill="#444441">slug UK</text>
+    <text x="10" y="96" font-size="11" fill="#444441">highlight</text>
+    <text x="10" y="113" font-size="11" fill="#444441">image_url</text>
+    <text x="10" y="130" font-size="11" fill="#444441">sort_order / is_active</text>
+  </g>
+
+  <!-- news -->
+  <g transform="translate(40,220)">
+    <rect width="170" height="185" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+    <rect width="170" height="28" rx="8" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+    <text x="85" y="18" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#412402">news</text>
+    <text x="10" y="45" font-size="11" fill="#444441">id PK</text>
+    <text x="10" y="62" font-size="11" fill="#444441">type</text>
+    <text x="10" y="79" font-size="11" fill="#444441">title / slug UK</text>
+    <text x="10" y="96" font-size="11" fill="#444441">summary</text>
+    <text x="10" y="113" font-size="11" fill="#444441">content</text>
+    <text x="10" y="130" font-size="11" fill="#444441">cover_image</text>
+    <text x="10" y="147" font-size="11" fill="#444441">published_at</text>
+    <text x="10" y="164" font-size="11" fill="#444441">is_published</text>
+  </g>
+
+  <!-- jobs -->
+  <g transform="translate(260,300)">
+    <rect width="170" height="170" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+    <rect width="170" height="28" rx="8" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+    <text x="85" y="18" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#04342C">jobs</text>
+    <text x="10" y="45" font-size="11" fill="#444441">id PK</text>
+    <text x="10" y="62" font-size="11" fill="#444441">title</text>
+    <text x="10" y="79" font-size="11" fill="#444441">department</text>
+    <text x="10" y="96" font-size="11" fill="#444441">location / type</text>
+    <text x="10" y="113" font-size="11" fill="#444441">description</text>
+    <text x="10" y="130" font-size="11" fill="#444441">requirements</text>
+    <text x="10" y="147" font-size="11" fill="#444441">sort_order / is_active</text>
+  </g>
+
+  <!-- job_applications -->
+  <g transform="translate(500,300)">
+    <rect width="190" height="155" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+    <rect width="190" height="28" rx="8" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+    <text x="95" y="18" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#04342C">job_applications</text>
+    <text x="10" y="45" font-size="11" fill="#444441">id PK</text>
+    <text x="10" y="62" font-size="11" fill="#444441">job_id FK</text>
+    <text x="10" y="79" font-size="11" fill="#444441">name / phone</text>
+    <text x="10" y="96" font-size="11" fill="#444441">email</text>
+    <text x="10" y="113" font-size="11" fill="#444441">resume_url</text>
+    <text x="10" y="130" font-size="11" fill="#444441">message / status</text>
+  </g>
+
+  <!-- relation: jobs -> job_applications -->
+  <line x1="430" y1="385" x2="500" y2="377" stroke="#5F5E5A" stroke-width="1" marker-end="url(#er-arrow)"/>
+  <text x="465" y="372" font-size="10" fill="#5F5E5A">1:N</text>
+
+  <!-- franchise_inquiries -->
+  <g transform="translate(40,470)">
+    <rect width="180" height="150" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+    <rect width="180" height="28" rx="8" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+    <text x="90" y="18" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#04342C">franchise_inquiries</text>
+    <text x="10" y="45" font-size="11" fill="#444441">id PK</text>
+    <text x="10" y="62" font-size="11" fill="#444441">name / phone</text>
+    <text x="10" y="79" font-size="11" fill="#444441">city</text>
+    <text x="10" y="96" font-size="11" fill="#444441">budget_range</text>
+    <text x="10" y="113" font-size="11" fill="#444441">message / status</text>
+  </g>
+
+  <!-- contact_messages -->
+  <g transform="translate(280,520)">
+    <rect width="170" height="135" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+    <rect width="170" height="28" rx="8" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+    <text x="85" y="18" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#04342C">contact_messages</text>
+    <text x="10" y="45" font-size="11" fill="#444441">id PK</text>
+    <text x="10" y="62" font-size="11" fill="#444441">name / contact</text>
+    <text x="10" y="79" font-size="11" fill="#444441">msg_type</text>
+    <text x="10" y="96" font-size="11" fill="#444441">content / status</text>
+  </g>
+
+  <!-- site_configs -->
+  <g transform="translate(500,520)">
+    <rect width="170" height="120" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+    <rect width="170" height="28" rx="8" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="85" y="18" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#042C53">site_configs</text>
+    <text x="10" y="45" font-size="11" fill="#444441">id PK</text>
+    <text x="10" y="62" font-size="11" fill="#444441">key UK</text>
+    <text x="10" y="79" font-size="11" fill="#444441">value / group</text>
+    <text x="10" y="96" font-size="11" fill="#444441">description</text>
+  </g>
+
+  <!-- users -->
+  <g transform="translate(720,520)">
+    <rect width="150" height="120" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+    <rect width="150" height="28" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="4 2"/>
+    <text x="75" y="18" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#444441">users（可选）</text>
+    <text x="10" y="45" font-size="11" fill="#444441">id PK</text>
+    <text x="10" y="62" font-size="11" fill="#444441">username UK</text>
+    <text x="10" y="79" font-size="11" fill="#444441">hashed_password</text>
+    <text x="10" y="96" font-size="11" fill="#444441">role / is_active</text>
+  </g>
+</svg>

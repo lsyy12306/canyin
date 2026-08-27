@@ -1,0 +1,117 @@
+erDiagram
+    dish_categories ||--o{ dishes : contains
+    jobs ||--o{ job_applications : receives
+
+    dish_categories {
+        int id PK
+        string key UK
+        string name
+        int sort_order
+        timestamp created_at
+    }
+
+    dishes {
+        int id PK
+        string name
+        string slug UK
+        int category_id FK
+        int price
+        string description
+        string image_url
+        json tags
+        boolean is_recommended
+        int sort_order
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    stores {
+        int id PK
+        string city
+        string name
+        string slug UK
+        string highlight
+        string image_url
+        int sort_order
+        boolean is_active
+        timestamp created_at
+    }
+
+    news {
+        int id PK
+        string type
+        string title
+        string slug UK
+        string summary
+        text content
+        string cover_image
+        date published_at
+        boolean is_published
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    jobs {
+        int id PK
+        string title
+        string department
+        string location
+        string type
+        text description
+        text requirements
+        int sort_order
+        boolean is_active
+        timestamp created_at
+    }
+
+    job_applications {
+        int id PK
+        int job_id FK
+        string name
+        string phone
+        string email
+        string resume_url
+        text message
+        string status
+        timestamp created_at
+    }
+
+    franchise_inquiries {
+        int id PK
+        string name
+        string phone
+        string city
+        string budget_range
+        text message
+        string status
+        timestamp created_at
+    }
+
+    contact_messages {
+        int id PK
+        string name
+        string contact
+        string msg_type
+        text content
+        string status
+        timestamp created_at
+    }
+
+    site_configs {
+        int id PK
+        string key UK
+        text value
+        string group
+        string description
+        timestamp updated_at
+    }
+
+    users {
+        int id PK
+        string username UK
+        string hashed_password
+        string role
+        boolean is_active
+        timestamp created_at
+    }

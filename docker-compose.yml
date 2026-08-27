@@ -1,0 +1,28 @@
+# 可选：本地起一个 PostgreSQL 用于贴近生产环境验证。
+# 默认本地开发使用 SQLite（backend/.env 中 DATABASE_URL=sqlite:///./weihe_dev.db），
+# 无需任何数据库服务即可跑；只有在需要验证 PostgreSQL 特性（JSONB、CHECK、RESTRICT）时再启用。
+#
+# 启动：   docker compose up -d db
+# 连接串：  postgresql+psycopg://weihe:weihe_pass@localhost:5432/weihe
+# 停服：   docker compose down    （加 -v 清除数据卷）
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: weihe-db
+    environment:
+      POSTGRES_USER: weihe
+      POSTGRES_PASSWORD: weihe_pass
+      POSTGRES_DB: weihe
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U weihe -d weihe"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pg_data:
