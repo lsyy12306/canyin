@@ -8,15 +8,21 @@ import ReservationModal from '../components/ReservationModal';
 import { useDishes, useDishCategories } from '../hooks/useDishes';
 import type { DishOut } from '../types';
 
+// 菜品中心页面：分类筛选 + 菜品网格 + 提前预约弹窗。
 export default function DishListPage() {
+  // 拉取分类列表（含 color），供顶部筛选条与卡片徽标使用。
   const { categories } = useDishCategories();
-  const [active, setActive] = useState('all');
-  const [reserveOpen, setReserveOpen] = useState(false);
-  const [presetDish, setPresetDish] = useState<DishOut | null>(null);
+  const [active, setActive] = useState('all'); // 当前选中分类，'all' 为全部
+  const [reserveOpen, setReserveOpen] = useState(false); // 预约弹窗开关
+  const [presetDish, setPresetDish] = useState<DishOut | null>(null); // 带入弹窗的预选菜品
+
+  // 实时筛选：active 为 'all' 时不传 category（取全部），否则按分类 key 过滤。
+  // useDishes 内部会重新请求 /api/dishes，实现“点分类即筛选”的交互。
   const { dishes, isLoading } = useDishes({
     category: active === 'all' ? undefined : active,
   });
 
+  // 打开预约弹窗：可选传入某菜品作为预选（从卡片“提前预约”按钮进入时带上）。
   const openReserve = (dish?: DishOut) => {
     setPresetDish(dish ?? null);
     setReserveOpen(true);

@@ -85,6 +85,7 @@ export default function DishManage() {
       title: '分类',
       dataIndex: 'category_id',
       width: 120,
+      // 用分类主题色渲染彩色标签（无颜色兜底品牌红），与官网彩色徽标保持一致。
       render: (cid: number) => {
         const c = categories.find((x) => x.id === cid);
         if (!c) return cid;

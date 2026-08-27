@@ -440,10 +440,16 @@ def admin_update_reservation_status(
     db: Session = Depends(get_db),
     _: User = Depends(require_admin),
 ) -> dict:
-    """预约状态流转（pending/confirmed/done/cancelled）。"""
+    """预约状态流转（pending/confirmed/done/cancelled）。
+
+    功能备注：
+    - 仅 admin 角色可流转状态；写操作都走 require_admin 守卫。
+    - ``_RESERVATION_STATUSES`` 白名单校验，防止写入非法状态字符串。
+    """
     res = db.get(DishReservation, reservation_id)
     if res is None:
         raise HTTPException(status_code=404, detail="预约不存在")
+    # 状态白名单守卫：只允许流转到预定义的 4 个状态，拒绝脏数据。
     if payload.status not in _RESERVATION_STATUSES:
         raise HTTPException(status_code=400, detail="非法状态值")
     res.status = payload.status
@@ -457,7 +463,12 @@ def admin_delete_reservation(
     db: Session = Depends(get_db),
     _: User = Depends(require_admin),
 ) -> dict:
-    """删除预约（级联删除明细）。"""
+    """删除预约（级联删除明细）。
+
+    功能备注：明细表 dish_reservation_items.reservation_id 外键设置了
+    ON DELETE CASCADE，因此删除主单时数据库会自动清理其下所有菜品明细，
+    不会出现孤儿数据。
+    """
     res = db.get(DishReservation, reservation_id)
     if res is None:
         raise HTTPException(status_code=404, detail="预约不存在")

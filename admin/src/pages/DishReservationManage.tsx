@@ -5,6 +5,14 @@ import { getReservations, updateReservationStatus, deleteReservation } from '../
 import { normalizeList, formatDateTime } from '../utils/helpers';
 import type { DishReservation, ReservationStatus } from '../types';
 
+// 后台“预约管理”页面（基于 AntD）。
+// 功能概述：集中展示顾客在前台提交的“提前预约菜品”线索；
+// - 顶部可按状态筛选；
+// - 表格列出联系人/手机/门店/预约时间/人数/明细数量/状态；
+// - 状态列用下拉框直接流转（pending/confirmed/done/cancelled）；
+// - “查看 N 道”打开右侧抽屉看完整明细并可标记确认/完成；
+// - 删除走 Popconfirm 二次确认，后端级联清明细。
+// 状态对应的中文文案与标签色由 STATUS_META 统一维护，避免散落硬编码。
 const STATUS_OPTIONS: { label: string; value: ReservationStatus }[] = [
   { label: '待确认', value: 'pending' },
   { label: '已确认', value: 'confirmed' },
@@ -12,6 +20,7 @@ const STATUS_OPTIONS: { label: string; value: ReservationStatus }[] = [
   { label: '已取消', value: 'cancelled' },
 ];
 
+// 状态 -> { 标签色, 中文 } 映射，供表格 Tag 与明细抽屉统一取用。
 const STATUS_META: Record<ReservationStatus, { color: string; label: string }> = {
   pending: { color: 'gold', label: '待确认' },
   confirmed: { color: 'green', label: '已确认' },
@@ -43,6 +52,8 @@ export default function DishReservationManage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
+  // 流转状态：调用 PUT /api/admin/dish-reservations/{id}/status，
+  // 成功后提示并重新拉取列表，保持视图与数据库一致。
   const changeStatus = async (id: number, value: ReservationStatus) => {
     await updateReservationStatus(id, value);
     message.success('状态已更新');

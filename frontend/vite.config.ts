@@ -12,6 +12,12 @@ export default defineConfig({
         target: 'http://localhost:8000',
         changeOrigin: true,
       },
+      // 菜品示例图等静态资源由后端 FastAPI 以 /uploads 提供，
+      // dev 模式下必须一并代理到后端，否则前台图片会裂（返回 SPA fallback 的 text/html）。
+      '/uploads': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+      },
     },
   },
 });

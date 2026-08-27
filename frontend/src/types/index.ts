@@ -97,14 +97,24 @@ export interface ContactMessagePayload {
 }
 
 // --------------------------------------------------------------------------- //
-// 提前预约菜品
+// 提前预约菜品（与后端 app/schemas/reservation.py 严格对齐）
 // --------------------------------------------------------------------------- //
+// 预约中的单品：前端勾选菜品时产出的“菜品 id + 数量”对。
 export interface ReservationItemIn {
   dish_id: number;
   quantity: number;
   note?: string;
 }
 
+// 提交预约的请求体：对应后端 DishReservationCreate。
+// 字段说明：
+// - store_id    预约门店 id
+// - name/phone  联系人姓名、手机号
+// - reserve_date 预约日期，格式 YYYY-MM-DD
+// - reserve_time 预约时间，格式 HH:MM（可选）
+// - guests      用餐人数
+// - note        备注（口味/忌口/座位偏好）
+// - items       菜品明细数组，至少 1 条
 export interface DishReservationCreate {
   store_id: number;
   name: string;
@@ -116,6 +126,7 @@ export interface DishReservationCreate {
   items: ReservationItemIn[];
 }
 
+// 预约明细对外响应（后台列表/详情使用）：含菜品名便于直接展示。
 export interface ReservationItemOut {
   id: number;
   dish_id: number;
@@ -124,6 +135,7 @@ export interface ReservationItemOut {
   dish_name: string;
 }
 
+// 预约整体对外响应：status 取值由后端约束为 4 种。
 export interface DishReservation {
   id: number;
   store_id: number;

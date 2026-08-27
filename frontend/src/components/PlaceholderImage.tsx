@@ -33,6 +33,8 @@ export default function PlaceholderImage({
   const [errored, setErrored] = useState(false);
   const resolved = resolveImage(src);
 
+  // 无图降级（缺图 / 图片加载失败）：用分类主题色生成 135° 渐变作为占位底色，
+  // 文字白色显示在中心；这样即使没有真实图片，分类色系依然统一可辨识。
   const fallbackStyle = color
     ? {
         background: `linear-gradient(135deg, ${color} 0%, ${color}cc 100%)`,

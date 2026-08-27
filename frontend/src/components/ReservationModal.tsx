@@ -6,6 +6,11 @@ import { showToast } from './Toast';
 import { formatPrice } from '../utils/helpers';
 import type { DishOut, Store } from '../types';
 
+// 提前预约菜品弹窗组件。
+// 功能概述：顾客在菜品中心点击“提前预约”后弹出此浮层；
+// 1) 选择预约门店；2) 填写联系人/手机号/预约日期时间/用餐人数；
+// 3) 从全部菜品列表中勾选并加减数量；4) 提交到 /api/dish-reservations 真实落库。
+// 支持从菜品卡片带入预选菜品（presetDish）：打开时自动勾选 1 份，减少重复操作。
 interface Props {
   open: boolean;
   onClose: () => void;
@@ -41,6 +46,8 @@ export default function ReservationModal({ open, onClose, presetDish }: Props) {
   const [form, setForm] = useState<FormState>(emptyForm);
   const [submitting, setSubmitting] = useState(false);
 
+  // 弹窗打开时拉取“门店列表”与“全部菜品”（用于门店下拉与菜品勾选器）。
+  // 失败兜底为空数组，保证弹窗仍可显示（仅选项为空）。
   useEffect(() => {
     if (!open) return;
     getStores().then(setStores).catch(() => setStores([]));
@@ -72,6 +79,8 @@ export default function ReservationModal({ open, onClose, presetDish }: Props) {
     });
   };
 
+  // 提交前做前端校验：门店/联系人/手机号格式/日期/至少 1 道菜，缺一不可提交。
+  // 校验不通过直接用 toast 提示并中断，避免无效请求打到后端。
   const submit = async () => {
     if (!form.store_id) return showToast('error', '请选择预约门店');
     if (!form.name.trim()) return showToast('error', '请填写联系人姓名');
