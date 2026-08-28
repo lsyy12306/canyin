@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>菜品中心 | 味禾小馆</title>
-  <meta name="description" content="味禾小馆菜品中心——新式家常粤菜，现炒现做，招牌热菜、靓汤、小炒、主食与点心。" />
+  <meta name="description" content="味禾小馆菜品中心——新式家常粤菜，现炒现做，八大类 18 道招牌热菜、海鲜、靓汤、小炒、主食点心与时令养生。" />
   <link rel="stylesheet" href="../assets/style.css" />
 </head>
 <body>
@@ -53,7 +53,7 @@
     <div class="container">
       <div class="crumb"><a href="../index.html">首页</a> / 产品 / 菜品中心</div>
       <h1>菜品中心</h1>
-      <p style="color:var(--muted);max-width:640px">现炒现做、拒绝预制。以下菜品与图片为演示占位，正式上线前将替换为真实菜品摄影与介绍。</p>
+      <p style="color:var(--muted);max-width:640px">现炒现做、拒绝预制。八大类别、18 道演示菜品（含 AI 示意图），点击分类实时筛选，心仪可一键提前预约。</p>
     </div>
   </section>
 
@@ -61,20 +61,178 @@
     <div class="container">
       <div class="cat-filter">
         <a href="#" data-filter="all" class="on">全部</a>
-        <a href="#" data-filter="hot">招牌热菜</a>
-        <a href="#" data-filter="soup">精致靓汤</a>
-        <a href="#" data-filter="stir">家常小炒</a>
-        <a href="#" data-filter="staple">主食点心</a>
+        <a href="#" data-filter="hot" style="--c:#E0483B"><span class="dot"></span>招牌热菜</a>
+        <a href="#" data-filter="soup" style="--c:#E08A3C"><span class="dot"></span>精致靓汤</a>
+        <a href="#" data-filter="stir" style="--c:#6E8B5B"><span class="dot"></span>家常小炒</a>
+        <a href="#" data-filter="staple" style="--c:#A9744F"><span class="dot"></span>主食点心</a>
+        <a href="#" data-filter="cold" style="--c:#9B6FB0"><span class="dot"></span>凉菜前菜</a>
+        <a href="#" data-filter="seafood" style="--c:#2E86B5"><span class="dot"></span>海鲜水产</a>
+        <a href="#" data-filter="snack" style="--c:#D96B9A"><span class="dot"></span>特色小吃</a>
+        <a href="#" data-filter="wellness" style="--c:#7BA05B"><span class="dot"></span>时令养生</a>
       </div>
       <div class="grid grid-4">
-        <div class="dish" data-cat="hot"><div class="ph ph-dish">菜品图片</div><div class="body"><h3>古法烧腩仔</h3><p>皮脆肉嫩，粤式烧味经典。</p><div class="meta"><span class="badge badge-fresh">招牌</span><span class="price">¥48</span></div></div></div>
-        <div class="dish" data-cat="hot"><div class="ph ph-dish">菜品图片</div><div class="body"><h3>白切清远鸡</h3><p>原汁原味，配姜葱蓉。</p><div class="meta"><span class="badge badge-brand">粤味</span><span class="price">¥58</span></div></div></div>
-        <div class="dish" data-cat="hot"><div class="ph ph-dish">菜品图片</div><div class="body"><h3>豉汁蒸排骨</h3><p>软糯入味，老少皆宜。</p><div class="meta"><span class="badge badge-amber">热销</span><span class="price">¥38</span></div></div></div>
-        <div class="dish" data-cat="hot"><div class="ph ph-dish">菜品图片</div><div class="body"><h3>啫啫黄鳝煲</h3><p>砂锅生啫，锅气十足。</p><div class="meta"><span class="badge badge-fresh">现做</span><span class="price">¥52</span></div></div></div>
-        <div class="dish" data-cat="soup"><div class="ph ph-dish">菜品图片</div><div class="body"><h3>老火例汤</h3><p>每日一炖，温润养生。</p><div class="meta"><span class="badge badge-fresh">每日</span><span class="price">¥18</span></div></div></div>
-        <div class="dish" data-cat="stir"><div class="ph ph-dish">菜品图片</div><div class="body"><h3>上汤娃娃菜</h3><p>清爽解腻，家常好味。</p><div class="meta"><span class="badge badge-amber">素菜</span><span class="price">¥28</span></div></div></div>
-        <div class="dish" data-cat="staple"><div class="ph ph-dish">菜品图片</div><div class="body"><h3>腊味煲仔饭</h3><p>焦香锅巴，一口满足。</p><div class="meta"><span class="badge badge-brand">主食</span><span class="price">¥32</span></div></div></div>
-        <div class="dish" data-cat="staple"><div class="ph ph-dish">菜品图片</div><div class="body"><h3>流沙奶黄包</h3><p>现蒸点心，咸甜流心。</p><div class="meta"><span class="badge badge-amber">点心</span><span class="price">¥16</span></div></div></div>
+        <article class="dish" data-cat="hot">
+          <div class="thumb"><img src="../assets/dishes/roast-pork-belly.png" alt="古法烧腩仔" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>古法烧腩仔</h3><span class="cat-badge" style="--c:#E0483B">招牌热菜</span></div>
+            <p class="dish-desc">皮脆肉嫩，粤式烧味经典。</p>
+            <div class="meta"><span class="badge badge-brand">招牌</span><span class="price">¥48</span></div>
+            <button class="reserve-btn" data-dish="古法烧腩仔">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="hot">
+          <div class="thumb"><img src="../assets/dishes/poached-chicken.png" alt="白切清远鸡" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>白切清远鸡</h3><span class="cat-badge" style="--c:#E0483B">招牌热菜</span></div>
+            <p class="dish-desc">原汁原味，配姜葱蓉。</p>
+            <div class="meta"><span class="badge badge-brand">粤味</span><span class="price">¥58</span></div>
+            <button class="reserve-btn" data-dish="白切清远鸡">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="hot">
+          <div class="thumb"><img src="../assets/dishes/ribs-blackbean.png" alt="豉汁蒸排骨" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>豉汁蒸排骨</h3><span class="cat-badge" style="--c:#E0483B">招牌热菜</span></div>
+            <p class="dish-desc">软糯入味，老少皆宜。</p>
+            <div class="meta"><span class="badge badge-amber">热销</span><span class="price">¥38</span></div>
+            <button class="reserve-btn" data-dish="豉汁蒸排骨">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="hot">
+          <div class="thumb"><img src="../assets/dishes/claypot-eel.png" alt="啫啫黄鳝煲" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>啫啫黄鳝煲</h3><span class="cat-badge" style="--c:#E0483B">招牌热菜</span></div>
+            <p class="dish-desc">砂锅生啫，锅气十足。</p>
+            <div class="meta"><span class="badge badge-fresh">现做</span><span class="price">¥52</span></div>
+            <button class="reserve-btn" data-dish="啫啫黄鳝煲">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="hot">
+          <div class="thumb"><img src="../assets/dishes/char-siu.png" alt="蜜汁叉烧" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>蜜汁叉烧</h3><span class="cat-badge" style="--c:#E0483B">招牌热菜</span></div>
+            <p class="dish-desc">蜜汁焦香，广式烧味代表。</p>
+            <div class="meta"><span class="badge badge-brand">招牌</span><span class="price">¥46</span></div>
+            <button class="reserve-btn" data-dish="蜜汁叉烧">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="hot">
+          <div class="thumb"><img src="../assets/dishes/coconut-chicken-hotpot.png" alt="椰子鸡火锅" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>椰子鸡火锅</h3><span class="cat-badge" style="--c:#E0483B">招牌热菜</span></div>
+            <p class="dish-desc">清甜滋补，现涮鲜活。</p>
+            <div class="meta"><span class="badge badge-amber">时令</span><span class="price">¥88</span></div>
+            <button class="reserve-btn" data-dish="椰子鸡火锅">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="seafood">
+          <div class="thumb"><img src="../assets/dishes/poached-prawns.png" alt="白灼基围虾" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>白灼基围虾</h3><span class="cat-badge" style="--c:#2E86B5">海鲜水产</span></div>
+            <p class="dish-desc">鲜活白灼，蘸料提鲜。</p>
+            <div class="meta"><span class="badge badge-fresh">海鲜</span><span class="price">¥68</span></div>
+            <button class="reserve-btn" data-dish="白灼基围虾">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="seafood">
+          <div class="thumb"><img src="../assets/dishes/steamed-grouper.png" alt="清蒸石斑鱼" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>清蒸石斑鱼</h3><span class="cat-badge" style="--c:#2E86B5">海鲜水产</span></div>
+            <p class="dish-desc">肉质细嫩，原汁清蒸。</p>
+            <div class="meta"><span class="badge badge-fresh">海鲜</span><span class="price">¥128</span></div>
+            <button class="reserve-btn" data-dish="清蒸石斑鱼">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="soup">
+          <div class="thumb"><img src="../assets/dishes/old-fire-soup.png" alt="老火例汤" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>老火例汤</h3><span class="cat-badge" style="--c:#E08A3C">精致靓汤</span></div>
+            <p class="dish-desc">每日一炖，温润养生。</p>
+            <div class="meta"><span class="badge badge-fresh">每日</span><span class="price">¥18</span></div>
+            <button class="reserve-btn" data-dish="老火例汤">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="soup">
+          <div class="thumb"><img src="../assets/dishes/duck-tangerine-soup.png" alt="陈皮老鸭汤" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>陈皮老鸭汤</h3><span class="cat-badge" style="--c:#E08A3C">精致靓汤</span></div>
+            <p class="dish-desc">陈皮入味，温润去燥。</p>
+            <div class="meta"><span class="badge badge-fresh">滋补</span><span class="price">¥28</span></div>
+            <button class="reserve-btn" data-dish="陈皮老鸭汤">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="stir">
+          <div class="thumb"><img src="../assets/dishes/baby-cabbage.png" alt="上汤娃娃菜" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>上汤娃娃菜</h3><span class="cat-badge" style="--c:#6E8B5B">家常小炒</span></div>
+            <p class="dish-desc">清爽解腻，家常好味。</p>
+            <div class="meta"><span class="badge badge-fresh">素菜</span><span class="price">¥28</span></div>
+            <button class="reserve-btn" data-dish="上汤娃娃菜">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="stir">
+          <div class="thumb"><img src="../assets/dishes/beef-hofun.png" alt="干炒牛河" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>干炒牛河</h3><span class="cat-badge" style="--c:#6E8B5B">家常小炒</span></div>
+            <p class="dish-desc">镬气十足，河粉爽滑。</p>
+            <div class="meta"><span class="badge badge-amber">热销</span><span class="price">¥32</span></div>
+            <button class="reserve-btn" data-dish="干炒牛河">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="cold">
+          <div class="thumb"><img src="../assets/dishes/cucumber-salad.png" alt="拍黄瓜" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>拍黄瓜</h3><span class="cat-badge" style="--c:#9B6FB0">凉菜前菜</span></div>
+            <p class="dish-desc">清爽开胃，蒜香脆口。</p>
+            <div class="meta"><span class="badge badge-fresh">凉菜</span><span class="price">¥16</span></div>
+            <button class="reserve-btn" data-dish="拍黄瓜">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="cold">
+          <div class="thumb"><img src="../assets/dishes/century-egg-tofu.png" alt="皮蛋拌豆腐" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>皮蛋拌豆腐</h3><span class="cat-badge" style="--c:#9B6FB0">凉菜前菜</span></div>
+            <p class="dish-desc">清凉滑嫩，下饭一绝。</p>
+            <div class="meta"><span class="badge badge-fresh">凉菜</span><span class="price">¥18</span></div>
+            <button class="reserve-btn" data-dish="皮蛋拌豆腐">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="staple">
+          <div class="thumb"><img src="../assets/dishes/claypot-rice.png" alt="腊味煲仔饭" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>腊味煲仔饭</h3><span class="cat-badge" style="--c:#A9744F">主食点心</span></div>
+            <p class="dish-desc">焦香锅巴，一口满足。</p>
+            <div class="meta"><span class="badge badge-amber">主食</span><span class="price">¥32</span></div>
+            <button class="reserve-btn" data-dish="腊味煲仔饭">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="staple">
+          <div class="thumb"><img src="../assets/dishes/custard-bun.png" alt="流沙奶黄包" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>流沙奶黄包</h3><span class="cat-badge" style="--c:#A9744F">主食点心</span></div>
+            <p class="dish-desc">现蒸点心，咸甜流心。</p>
+            <div class="meta"><span class="badge badge-amber">点心</span><span class="price">¥16</span></div>
+            <button class="reserve-btn" data-dish="流沙奶黄包">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="snack">
+          <div class="thumb"><img src="../assets/dishes/fried-milk.png" alt="脆皮炸鲜奶" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>脆皮炸鲜奶</h3><span class="cat-badge" style="--c:#D96B9A">特色小吃</span></div>
+            <p class="dish-desc">外脆内嫩，甜而不腻。</p>
+            <div class="meta"><span class="badge badge-amber">小吃</span><span class="price">¥22</span></div>
+            <button class="reserve-btn" data-dish="脆皮炸鲜奶">提前预约</button>
+          </div>
+        </article>
+        <article class="dish" data-cat="wellness">
+          <div class="thumb"><img src="../assets/dishes/pear-fungus-soup.png" alt="雪梨银耳羹" loading="lazy"></div>
+          <div class="body">
+            <div class="dish-top"><h3>雪梨银耳羹</h3><span class="cat-badge" style="--c:#7BA05B">时令养生</span></div>
+            <p class="dish-desc">润肺清甜，时令养生。</p>
+            <div class="meta"><span class="badge badge-fresh">养生</span><span class="price">¥20</span></div>
+            <button class="reserve-btn" data-dish="雪梨银耳羹">提前预约</button>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -103,8 +261,47 @@
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">© 2026 味禾小馆 版权所有 · <a href="../privacy.html">隐私政策</a> · 本站为演示站点，联系方式与图片均为占位内容</div>
+    <div class="footer-bottom">© 2026 味禾小馆 版权所有 · <a href="../privacy.html">隐私政策</a> · 本站为演示站点，联系方式与图片为占位/示意图</div>
   </footer>
+
+  <!-- 提前预约弹窗（演示原型） -->
+  <div class="modal-mask" id="reserveMask">
+    <div class="modal">
+      <button class="x" aria-label="关闭">×</button>
+      <form id="reserveForm">
+        <h3>提前预约菜品</h3>
+        <p class="m-sub">到店前告诉我们想吃的，我们为您备好。</p>
+        <div class="field"><label>预约菜品</label><input id="resDish" type="text" readonly style="background:#f7f3ec"></div>
+        <div class="field">
+          <label>选择门店</label>
+          <select id="resStore">
+            <option>广州 · 北京路店</option>
+            <option>深圳 · 福田店</option>
+            <option>武汉 · 江汉路店</option>
+            <option>成都 · 春熙路店</option>
+            <option>西安 · 钟楼店</option>
+            <option>长沙 · 五一店</option>
+          </select>
+        </div>
+        <div class="btn-row">
+          <div class="field"><label>预约日期</label><input id="resDate" type="date"></div>
+          <div class="field"><label>到店时间</label><input id="resTime" type="time" value="18:30"></div>
+        </div>
+        <div class="field"><label>就餐人数</label><input id="resGuests" type="number" min="1" value="2"></div>
+        <div class="field"><label>您的称呼</label><input id="resName" type="text" placeholder="如：王先生"></div>
+        <div class="field"><label>联系电话</label><input id="resPhone" type="tel" placeholder="11 位手机号"></div>
+        <button class="btn btn-primary" type="submit" style="width:100%">提交预约</button>
+        <p class="note-mini">演示原型：提交仅前端校验，不会真实留资。</p>
+      </form>
+      <div id="reserveOk" class="ok-box" style="display:none">
+        <div class="ico">✅</div>
+        <h3>预约已提交（演示）</h3>
+        <p>您预约的 <b class="dish-name"></b> 已记录。<br>这是原型演示，正式上线后将由门店与您电话确认。</p>
+        <button class="btn btn-ghost" type="button">好的</button>
+      </div>
+    </div>
+  </div>
+
   <script src="../assets/main.js"></script>
 </body>
 </html>

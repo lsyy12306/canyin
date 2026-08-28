@@ -253,3 +253,61 @@ ul { list-style: none; }
   .cta-band { padding: 34px 22px; }
   .job { flex-direction: column; align-items: flex-start; }
 }
+
+/* ===== 菜品真实图 & 分类配色（增强版高保真原型） ===== */
+.dish .thumb { aspect-ratio: 4/3; overflow: hidden; background: #f1ece3; }
+.dish .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+.dish:hover .thumb img { transform: scale(1.05); }
+
+.dish-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.dish-top h3 { font-size: 17px; margin: 0; }
+.cat-badge {
+  flex: none; font-size: 11.5px; font-weight: 600; color: #fff;
+  background: var(--c, var(--brand)); padding: 2px 9px; border-radius: 999px; white-space: nowrap;
+}
+.dish-desc { color: var(--muted); font-size: 13.5px; min-height: 38px; margin: 0 0 10px; }
+
+/* 分类筛选圆点 */
+.cat-filter a .dot {
+  display: inline-block; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--c, var(--brand)); margin-right: 7px; vertical-align: middle;
+}
+
+/* 提前预约按钮 */
+.reserve-btn {
+  margin-top: 12px; width: 100%; border: 1.5px solid var(--brand); color: var(--brand);
+  background: #fff; padding: 9px 0; border-radius: 999px; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: .2s;
+}
+.reserve-btn:hover { background: var(--brand); color: #fff; }
+
+/* 分类导航条（首页） */
+.cat-strip { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.cat-strip a {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px;
+  border: 1px solid var(--line); border-radius: 999px; font-size: 14px; color: var(--ink); background: #fff;
+  transition: .2s;
+}
+.cat-strip a:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-2px); }
+.cat-strip a .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c, var(--brand)); }
+
+/* ===== 预约弹窗（演示原型：前端校验 + 模拟提交，不连后端） ===== */
+.modal-mask {
+  position: fixed; inset: 0; background: rgba(46,42,38,.5);
+  display: none; align-items: center; justify-content: center; z-index: 200; padding: 20px;
+}
+.modal-mask.open { display: flex; }
+.modal {
+  background: #fff; border-radius: 16px; width: 100%; max-width: 460px;
+  max-height: 90vh; overflow: auto; padding: 26px; box-shadow: 0 24px 70px rgba(0,0,0,.3); position: relative;
+}
+.modal .x { position: absolute; top: 12px; right: 16px; border: none; background: none; font-size: 24px; color: var(--muted); cursor: pointer; line-height: 1; }
+.modal h3 { font-size: 21px; margin: 0 0 4px; }
+.modal .m-sub { color: var(--muted); font-size: 13px; margin: 0 0 18px; }
+.modal .field select { width: 100%; padding: 11px 14px; border: 1px solid var(--line); border-radius: 10px; font-size: 15px; font-family: inherit; background: #fff; color: var(--ink); }
+.modal .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.modal .ok-box { text-align: center; padding: 14px 0 4px; }
+.modal .ok-box .ico { font-size: 42px; }
+.modal .ok-box h3 { margin: 8px 0 6px; }
+.modal .ok-box p { color: var(--muted); font-size: 14px; }
+.modal .note-mini { font-size: 12px; color: var(--muted); margin-top: 10px; text-align: center; }

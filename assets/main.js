@@ -32,3 +32,45 @@
     });
   });
 })();
+
+// 提前预约菜品：演示弹窗（前端校验 + 模拟提交，不连接后端）
+(function () {
+  var mask = document.getElementById('reserveMask');
+  if (!mask) return;
+  var form = document.getElementById('reserveForm');
+  var okBox = document.getElementById('reserveOk');
+  var dishInput = document.getElementById('resDish');
+  var nameI = document.getElementById('resName');
+  var phoneI = document.getElementById('resPhone');
+
+  function openModal(dish) {
+    okBox.style.display = 'none';
+    form.style.display = '';
+    dishInput.value = dish || '';
+    mask.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    mask.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.reserve-btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      openModal(b.getAttribute('data-dish') || '');
+    });
+  });
+  mask.querySelector('.x').addEventListener('click', closeModal);
+  mask.addEventListener('click', function (e) { if (e.target === mask) closeModal(); });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!nameI.value.trim() || !phoneI.value.trim()) { alert('请填写称呼与联系电话'); return; }
+    if (!/^1\d{10}$/.test(phoneI.value.trim())) { alert('请输入 11 位手机号'); return; }
+    form.style.display = 'none';
+    okBox.style.display = '';
+    okBox.querySelector('.dish-name').textContent = dishInput.value || '心仪菜品';
+  });
+  var okBtn = okBox.querySelector('.btn');
+  if (okBtn) okBtn.addEventListener('click', closeModal);
+})();
